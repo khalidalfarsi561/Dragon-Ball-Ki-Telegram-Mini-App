@@ -1,8 +1,8 @@
 const NAV_ITEMS = [
-  { id: 'home', label: 'Home', icon: '⌂' },
-  { id: 'mining', label: 'Mining', icon: '⛏' },
-  { id: 'quests', label: 'Quests', icon: '⚔' },
-  { id: 'wallet', label: 'Wallet', icon: '◈' },
+  { id: 'home', label: 'Home' },
+  { id: 'mining', label: 'Mining' },
+  { id: 'quests', label: 'Quests' },
+  { id: 'wallet', label: 'Wallet' },
 ];
 
 const Icon = ({ id }) => {
@@ -47,9 +47,9 @@ const Icon = ({ id }) => {
 
 export default function BottomNav({ activeTab = 'home', onTabChange }) {
   return (
-    <nav className="fixed inset-x-0 bottom-0 z-40 px-4 pb-4">
-      <div className="mx-auto max-w-md rounded-[1.75rem] border border-white/10 bg-slate-950/90 p-2 shadow-[0_20px_60px_rgba(15,23,42,0.55)] backdrop-blur-xl">
-        <div className="grid grid-cols-4 gap-2">
+    <nav className="fixed inset-x-0 bottom-0 z-40 px-3 pb-3 sm:px-4 sm:pb-4">
+      <div className="mx-auto max-w-md rounded-3xl border border-white/10 bg-slate-950/90 p-1.5 shadow-[0_10px_30px_rgba(15,23,42,0.45)] backdrop-blur-xl">
+        <div className="grid grid-cols-4 gap-1.5">
           {NAV_ITEMS.map((item) => {
             const active = activeTab === item.id;
             return (
@@ -57,13 +57,14 @@ export default function BottomNav({ activeTab = 'home', onTabChange }) {
                 key={item.id}
                 type="button"
                 onClick={() => onTabChange?.(item.id)}
-                className={`group flex flex-col items-center justify-center gap-1 rounded-[1.15rem] px-3 py-3 text-xs font-semibold transition ${
+                aria-current={active ? 'page' : undefined}
+                className={`group flex flex-col items-center justify-center gap-1 rounded-xl px-2 py-2 text-[11px] font-semibold transition sm:text-xs ${
                   active
-                    ? 'bg-gradient-to-b from-orange-400 to-amber-300 text-slate-950 shadow-lg shadow-orange-500/20'
+                    ? 'bg-gradient-to-b from-orange-400 to-amber-300 text-slate-950 shadow-md shadow-orange-500/20'
                     : 'text-slate-400 hover:bg-white/5 hover:text-white'
                 }`}
               >
-                <span className={`flex h-9 w-9 items-center justify-center rounded-full border transition ${
+                <span className={`flex h-8 w-8 items-center justify-center rounded-full border transition ${
                   active ? 'border-white/15 bg-white/20' : 'border-white/5 bg-white/5 group-hover:border-white/10'
                 }`}>
                   <Icon id={item.id} />

@@ -110,29 +110,28 @@ export default function MiningStore({
   );
 
   return (
-    <section className="overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/85 shadow-[0_30px_100px_rgba(15,23,42,0.55)] backdrop-blur">
-      <div className="relative border-b border-white/5 bg-gradient-to-br from-white/8 via-white/4 to-transparent px-5 py-5 sm:px-6">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(251,146,60,0.2),transparent_35%),radial-gradient(circle_at_left,rgba(56,189,248,0.18),transparent_28%)]" />
+    <section className="overflow-hidden rounded-3xl border border-white/10 bg-slate-950/85 shadow-xl backdrop-blur">
+      <div className="relative border-b border-white/5 bg-gradient-to-br from-white/8 via-white/4 to-transparent px-4 py-4 sm:px-5">
         <div className="relative flex items-center justify-between gap-3">
           <div>
-            <p className="text-[10px] uppercase tracking-[0.45em] text-orange-200/70">Mining Store</p>
-            <h3 className="mt-2 text-2xl font-black text-white sm:text-3xl">Passive Income Vault</h3>
-            <p className="mt-1 text-sm text-slate-300">Unlock upgrades, grow your Ki engine, and collect every tier.</p>
+            <p className="text-[10px] uppercase tracking-[0.2em] text-orange-200/70">Mining Store</p>
+            <h3 className="mt-1 text-xl font-black text-white sm:text-2xl">Passive Income</h3>
+            <p className="mt-1 text-xs text-slate-300 sm:text-sm">Buy upgrades to generate Ki automatically.</p>
           </div>
-          <div className="rounded-3xl border border-amber-300/20 bg-amber-500/10 px-4 py-3 text-right shadow-lg shadow-amber-500/10">
-            <p className="text-[10px] uppercase tracking-[0.3em] text-amber-100/70">Balance</p>
-            <p className="text-xl font-black text-amber-100">{formatKi(balanceKi)}</p>
+          <div className="rounded-2xl border border-amber-300/20 bg-amber-500/10 px-3 py-2 text-right">
+            <p className="text-[10px] uppercase tracking-[0.12em] text-amber-100/70">Balance</p>
+            <p className="text-lg font-black text-amber-100">{formatKi(balanceKi)}</p>
           </div>
         </div>
       </div>
 
-      <div className="px-5 py-4 sm:px-6">
-        <p className="text-sm text-slate-400">
+      <div className="px-4 py-3 sm:px-5">
+        <p className="text-xs text-slate-400 sm:text-sm">
           Purchase cards to increase passive Ki generation. {balanceKi <= 0 ? loadingText : ''}
         </p>
       </div>
 
-      <div className="grid gap-4 px-5 pb-5 sm:px-6 sm:pb-6">
+      <div className="grid gap-3 px-4 pb-4 sm:px-5 sm:pb-5">
         {cardRows.map((card) => {
           const canAfford = balanceKi >= card.cost;
           const ownedLabel = card.level > 0 ? `Owned x${card.level}` : 'Not owned';
@@ -140,65 +139,47 @@ export default function MiningStore({
           return (
             <article
               key={card.id}
-              className={`relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-gradient-to-br ${card.rarity.glow} p-[1px] shadow-2xl ${card.rarity.ring} transition hover:-translate-y-0.5 hover:border-white/20`}
+              className={`relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br ${card.rarity.glow} p-[1px] ${card.rarity.ring} transition hover:border-white/20`}
             >
-              <div className="rounded-[1.7rem] bg-slate-950/95 p-4 sm:p-5">
-                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-                <div className="flex flex-col gap-4">
-                  <div className="flex flex-wrap items-center justify-between gap-3">
+              <div className="rounded-2xl bg-slate-950/95 p-3 sm:p-4">
+                <div className="flex flex-col gap-3">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
                     <div className="space-y-2">
                       <div className="flex flex-wrap items-center gap-2">
-                        <h4 className="text-lg font-semibold text-white">{card.name}</h4>
-                        <span className={`rounded-full border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.24em] ${card.rarity.badge}`}>
+                        <h4 className="text-base font-semibold text-white">{card.name}</h4>
+                        <span className={`rounded-full border px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] ${card.rarity.badge}`}>
                           {card.rarity.label}
                         </span>
                       </div>
-                      <p className="max-w-2xl text-sm leading-6 text-slate-300">{card.description}</p>
+                      <p className="max-w-2xl text-xs leading-5 text-slate-300 sm:text-sm">{card.description}</p>
                     </div>
 
-                    <div className="rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-right">
-                      <p className="text-[10px] uppercase tracking-[0.22em] text-slate-400">Income</p>
-                      <p className={`text-sm font-semibold ${card.rarity.accent}`}>{formatKi(card.incomePerSecond)} Ki/s</p>
+                    <div className="rounded-xl border border-white/10 bg-white/5 px-2.5 py-1.5 text-right">
+                      <p className="text-[10px] uppercase tracking-[0.12em] text-slate-400">Income</p>
+                      <p className={`text-xs font-semibold sm:text-sm ${card.rarity.accent}`}>{formatKi(card.incomePerSecond)} Ki/s</p>
                     </div>
                   </div>
 
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-300">
+                    <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-slate-300">
                       {card.category || 'Support'}
                     </span>
-                    <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-300">
+                    <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-slate-300">
                       Cost: {formatKi(card.cost)} Ki
                     </span>
-                    <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-300">
+                    <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-slate-300">
                       {ownedLabel}
                     </span>
                   </div>
 
-                  <div className="flex items-center justify-between gap-3">
-                    <div className="h-2 flex-1 overflow-hidden rounded-full bg-white/5">
-                      <div
-                        className={`h-full rounded-full bg-gradient-to-r ${
-                          card.rarity.id === 'common'
-                            ? 'from-slate-400 to-slate-200'
-                            : card.rarity.id === 'rare'
-                              ? 'from-cyan-400 to-blue-500'
-                              : card.rarity.id === 'epic'
-                                ? 'from-fuchsia-500 to-purple-500'
-                                : card.rarity.id === 'legendary'
-                                  ? 'from-amber-300 to-orange-500'
-                                  : 'from-emerald-300 to-gold-400'
-                        }`}
-                        style={{ width: `${Math.min(100, Math.max(18, (card.cost / 50000) * 100))}%` }}
-                      />
-                    </div>
-
+                  <div className="flex justify-end">
                     <button
                       type="button"
                       onClick={() => onPurchaseCard?.(card)}
                       disabled={!canAfford}
-                      className={`rounded-2xl px-4 py-2 text-sm font-semibold transition ${
+                      className={`rounded-xl px-3 py-1.5 text-xs font-semibold transition sm:text-sm ${
                         canAfford
-                          ? 'border border-orange-300/30 bg-gradient-to-r from-orange-500 via-amber-400 to-gold-400 text-slate-950 shadow-lg shadow-orange-500/20 hover:brightness-110'
+                          ? 'border border-orange-300/30 bg-gradient-to-r from-orange-500 via-amber-400 to-gold-400 text-slate-950 hover:brightness-110'
                           : 'cursor-not-allowed border border-slate-700 bg-slate-800 text-slate-500'
                       }`}
                     >
