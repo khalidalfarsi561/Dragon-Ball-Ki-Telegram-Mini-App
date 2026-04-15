@@ -19,9 +19,19 @@ body,
 body {
   background:
     radial-gradient(circle at top, rgba(255, 183, 77, 0.18), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.14), transparent 22%),
     linear-gradient(180deg, #06111f 0%, #0d1b33 100%);
 }
 
 * {
   box-sizing: border-box;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: rgba(251, 191, 36, 0.28);
+  color: #fff;
 }

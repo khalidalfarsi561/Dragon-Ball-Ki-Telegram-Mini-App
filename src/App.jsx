@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import GokuClicker from './components/GokuClicker';
 import MiningStore from './components/MiningStore';
+import BottomNav from './components/BottomNav';
 import { COLLECTIONS, LEVEL_THRESHOLDS, getLevelByKi } from './lib/gameConstants';
 
 const demoCards = [
@@ -36,9 +37,9 @@ export default function App() {
   const userCards = [];
 
   return (
-    <main className="min-h-screen px-4 py-8 text-white">
+    <main className="min-h-screen px-4 pt-6 pb-28 text-white sm:px-6 sm:pt-8">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-6">
-        <header className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-2xl shadow-orange-500/10 backdrop-blur">
+        <header className="rounded-[2rem] border border-white/10 bg-white/5 p-6 shadow-2xl shadow-orange-500/10 backdrop-blur">
           <p className="text-xs uppercase tracking-[0.35em] text-orange-300/80">Dragon Ball $Ki</p>
           <h1 className="mt-2 text-3xl font-black sm:text-5xl">Mini App is ready</h1>
           <p className="mt-3 max-w-2xl text-sm text-slate-300 sm:text-base">
@@ -71,25 +72,12 @@ export default function App() {
           <MiningStore cards={demoCards} userCards={userCards} balanceKi={balanceKi} />
         </section>
 
-        <footer className="flex gap-2 rounded-2xl border border-white/10 bg-black/20 p-2">
-          {['home', 'mining', 'quests', 'wallet'].map((tab) => (
-            <button
-              key={tab}
-              type="button"
-              onClick={() => setActiveTab(tab)}
-              className={`flex-1 rounded-xl px-3 py-2 text-sm font-semibold capitalize ${
-                activeTab === tab ? 'bg-orange-500 text-slate-950' : 'text-slate-300'
-              }`}
-            >
-              {tab}
-            </button>
-          ))}
-        </footer>
-
         <div className="text-xs text-slate-400">
           Levels: {LEVEL_THRESHOLDS.map((item) => item.name).join(' • ')}
         </div>
       </div>
+
+      <BottomNav activeTab={activeTab} onTabChange={setActiveTab} />
     </main>
   );
 }
